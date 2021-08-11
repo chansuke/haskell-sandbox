@@ -1,0 +1,8 @@
+import Control.Monad.ST (ST, runST)
+import Data.Array.ST (STUArray, newListArray, readArray, writeArray, getElems)
+
+doubleArray :: [Double]
+doubleArray = runST $ do
+  arr <- newListArray (0, 4) [1..5] :: ST s (STUArray s Int Double)
+  writeArray arr 2 (x * 10.0)
+  getElems arr
